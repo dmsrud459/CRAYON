@@ -1,0 +1,1047 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Bootstrap Core CSS 사용 코드-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}"> -->
+    <style>
+        @charset "UTF-8";
+        @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css); 
+        @import url("../static/css/default.css");
+    </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='js/font-awesome/5.8.1/css/all.min.css') }}">
+
+    <!-- jQuery 사용-->
+    <script src="{{ url_for('static', filename='js/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery/jquery.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-datepicker/bootstrap-datepicker.kr.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+
+    <script>
+        (function($){$.fn.jointer=function(connectionColor,connectionCircleColor,useMargin){this.connectionColor=connectionColor||'black';this.connectionCircleColor=connectionCircleColor||'black';this.useMargin=useMargin||!1;this.jointerConnectionsStore=[];this.connectElements=((from,to)=>{if(checkIfElementExists(from)&&checkIfElementExists(to)){let cTy;let cTx;let id=guid();let fromX=$(from).position().left+($(to).width()/2);let fromY=$(from).position().top+($(from).height()/2);let targetX=$(to).position().left+($(to).width()/2);let targetY=$(to).position().top+($(to).height()/2);if(targetY>fromY){if(this.useMargin){cTy=$(to).position().top+getTopMargin(to);cTx=targetX}else{cTy=$(to).position().top;cTx=targetX}}
+if(targetY<fromY){if(this.useMargin){cTy=$(to).position().top+($(to).height()+getTopMargin(to));cTx=targetX}else{cTy=$(to).position().top+$(to).height();cTx=targetX}}
+$('body').prepend('<svg id="'+id+'" width="100%" height="100%" style="position: absolute; top: 0px; z-index: -1;">'+'<line x1="'+fromX+'" y1="'+fromY+'" x2="'+cTx+'"y2="'+cTy+'" stroke="'+this.connectionColor+'"/>'+'<circle cx="'+cTx+'" cy="'+cTy+'" r="5" fill="'+this.connectionCircleColor+'" />'+'</svg>');this.jointerConnectionsStore.push({from:$(from).attr('id'),to:$(to).attr('id'),connectionId:id})}else{throw new Error("elements not found in DOM")}});this.clearConnection=((el)=>{if(!el){throw new Error("element not defined. can´t clear connections")}
+if($(el).attr('id')!=="undefined"){let removeConnections=[];$.each(this.jointerConnectionsStore,(i,e)=>{if($(el).attr('id')==e.from){$('#'+e.connectionId).remove();removeConnections.push(e)}});for(let i=0;i<removeConnections.length;i++){for(let a=0;a<this.jointerConnectionsStore.length;a++){if(removeConnections[i].connectionId==this.jointerConnectionsStore[a].connectionId){this.jointerConnectionsStore.splice(a,1)}}}}});this.clearAllConnection=()=>{$('body svg').remove()};return this};function guid(){function s4(){return Math.floor((1+Math.random())*0x10000).toString(16).substring(1)}
+return s4()+s4()+'-'+s4()+'-'+s4()+'-'+s4()+'-'+s4()+s4()+s4()}
+function getTopMargin(el){return parseFloat($(el).css('margin-top'))}
+function getBottomMargin(el){return parseFloat($(el).css('margin-bottom'))}
+function checkIfElementExists(el){if($(el).length<1){return!1}else{return!0}}}(jQuery))
+
+        var jointer1 = new $().jointer('black','white',true);
+        
+        $(function(){
+            
+            $(document).on("click", "#btn-advance", function(){
+                $(this).children("#ico-updown").toggleClass("fa-chevron-up");
+                $("#learn").toggleClass("move");
+            });
+
+            $(document).on("click", "#btn-preview", function(){
+                $(this).parent().toggleClass("d-none");
+                $("#preview").toggleClass("move");
+                
+            });
+
+            /*이미지, 캠 열기*/
+            $(document).on("click", ".btn-img-upload", function(){                
+                $(this).parents(".class-tool").addClass("d-none");
+                $(this).parents(".class-tool").siblings(".image-box").toggleClass("d-none");
+                if ($(this).attr("id")=="up"){
+                up = 0;
+                    if(up ==0){
+                        cam_state="0";
+                    }
+                    else{
+                        cam_state="1";
+                    }
+                console.log(cam_state);
+                console.log(typeof(cam_state));
+                }
+            });
+
+            $(document).on("click", ".btn-cam-upload", function(){   
+                if ($(this).attr("id")=="cam"){
+                if(up ==0){
+                    cam_state="0";
+                }
+                else{
+                    cam_state="1";
+                }
+                console.log(cam_state);
+                console.log(typeof(cam_state));       }      
+                $(this).parents(".class-tool").addClass("d-none");
+                $(this).parents(".class-tool").siblings(".cam-box").toggleClass("d-none");
+
+            var video = document.querySelector("#videoElement1");
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                    })
+                    .catch(function (err0r) {
+                        console.log("Something went wrong!");
+                    });
+            }
+            });
+            var superformData = new FormData();
+      
+
+
+            /*이미지, 캠 닫기*/
+            $(document).on("click", ".image-close", function(){                
+                $(this).parents(".image-box").toggleClass("d-none");
+                $(this).parents(".image-box").siblings(".class-tool").removeClass("d-none");
+            });
+
+            $(document).on("click", ".cam-close", function(){                
+                $(this).parents(".cam-box").toggleClass("d-none");
+            });
+
+            
+            $("#btn-class-clone").on("click", function(){
+                showLine();
+                classCntNum ++;
+                $(".card-title").last().attr("name", classCntNum); 
+                ///// name 값  변경 (헷갈리면->카운트 값에 문자 더하기) -> 다른데도 해야댐 //////
+                $("span.card-title").last().html("Class" + classCntNum);
+                $("#add-class").before($("#class-clone").children().clone());
+                
+                
+                // 클래스3 드래그 효과
+                var imgValue3 = 0; 
+                var uploadFiles3 = [];
+                var $drop3 = $("#drop3");
+                $drop3.on("dragenter", function (e) { //드래그 요소가 들어왔을떄
+                    $(this).addClass('drag-over');
+                }).on("dragleave", function (e) { //드래그 요소가 나갔을때
+                    $(this).removeClass('drag-over');
+                }).on("dragover", function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }).on('drop', function (e) {
+                    e.preventDefault();
+                    $(this).removeClass('drag-over');
+                    files3 = e.originalEvent.dataTransfer.files;
+                    /*업로드된 이미지를  카운트해서 sample{} <--에 숫자 넣어주기 코드*/
+                    for (var i = 0; i < files3.length; i++) {
+                        $('.count3').html(imgValue3);
+                        //for(var j = 0; j < files.length; j++) {
+                        //   imgValue++;
+                        //$('.count2').html(imgValue);
+                        //$('.count3').html(imgValue);
+                        //$('.count4').html(imgValue);
+
+                        var file3 = files3[i];
+                        console.log(file3);
+                        var size3 = uploadFiles3.push(file3);
+                        preview3(file3, size3 - 1);
+                        
+                    }
+                });
+
+            });
+
+
+            $(document).on("change", "#select-preview", function(){
+                $("#image-select").toggleClass("d-none");
+                $("#cam-select").toggleClass("d-none");
+
+                var video = document.querySelector("#videoElement");
+
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                        video.srcObject = stream;
+                        streamVideo('videoElement');
+                        //setInterval(streamVideo($("#videoElement")), 1000);
+                    })
+                    .catch(function (err0r) {
+                        console.log("Something went wrong!");
+                        //streamVideo($("#videoElement"));
+                        
+                        //setInterval(streamVideo($("#videoElement")), 1000);
+                    });
+            }
+            
+            });
+            
+            // $('.popover-msg').popover({ //주석이었음
+            //     container: 'body'
+            // });
+           
+        });
+
+
+        /* class 삭제~ㅋㅋ*/
+        function deleteClass1() {
+                const div = document.getElementById('class1');
+                div.remove();
+        }
+        function deleteClass2() {
+                const div = document.getElementById('class2');
+                div.remove();
+        }
+        function deleteClass3() {
+                const div = document.getElementById('class3');
+                div.remove();
+        }
+        
+        //1초 컷으로 보내보내보내보내보내받아받아받아
+        // function streamVideo(target){
+        //     // console.log(target);
+        //     // console.log("효민정답");
+        //     target = document.getElementById(target);
+
+        //     // var ccc = document.getElementById(target);
+        //      //var ctx = target.getContext("2d");
+        //      //var imgData = ctx.getImageData(10, 10, 50, 50);
+        //     // videoElement
+        //     // console.log(target);
+        //     // console.log("은경정답");
+        //     //target != null && target.length > 0
+        //     if (true) {
+        //         //var t = target;
+        //         //html2canvas(t).then(function (canvas) {
+        //             // const tttt = document.createElement("canvas");
+        //             // // scale the canvas accordingly
+        //             // tttt.width = target.videoWidth;
+        //             // tttt.height = target.videoHeight;
+        //             // tttt.getContext('2d')
+        //             // const dataURL = canvas.toDataURL("image/jpg");
+
+        //             var canvas = document.getElementById(target);
+        //             // var context = canvas[canvas.length - 1].getContext('2d');
+        //             // context.drawImage(video,0,0,100,100);
+
+        //             // $("div#forCanvas").append('<canvas class="canvas" width="80" height="80" padding="5"></canvas>')
+
+
+
+        //             var myImg = canvas.toDataURL("image/png");
+        //             //console.log(myImg);
+        //             //myImg = myImg.replace("data:image/png;base64,", ""); //문자열 치환
+        //             myImg = dataURL.replace("data:image/png;base64,", ""); //문자열 치환
+                   
+        //             var formdata = new FormData();
+        //             formdata.append("myImg", myImg);
+        //             //myImg = myImg.replace("image/png", "");
+        //             //console.log(myImg);// 실시간 이미지
+        //             //console.log("나 보내고있어어~~~?");
+        //             console.log(myImg);
+
+        //             $.ajax({
+        //                 type: "POST",
+        //                 url: '{{url_for("IMAGEMODEL")}}',
+        //                 data: formdata,
+        //                     //"imgSrc": formdata
+                        
+        //                 processData : false,
+        //                 contentType : false,
+        //                 dataType: "JSON",
+        //                 success: function (data) {
+        //                     console.log(data);
+        //                     $.each(data, function (i, item) {
+        //                         alert(data.result + data.result2);  // 클래스 명이랑 정확도
+        //                     })
+        //                 },
+        //                 error: function (a, b, c) {
+        //                     console.log(a);
+        //                 }
+        //             });
+        //         });
+        //     }
+        //     else{
+        //         console.log("너 지금 못보내")
+        //     }
+
+        //    setTimeout("streamVideo('videoElement')", 1000);
+            
+        //     cnt1+=1;
+        // }
+
+        var cnt1= 0;
+        function streamVideo(target){
+            // $("div.plz_img").html('<canvas class="canvas" width="80" height="80" padding="5"></canvas>');
+            //console.log(target);
+            target = document.getElementById(target);
+            // console.log(target);
+            //target != null && target.length > 0
+            if (true) {
+                var t = video;
+                html2canvas(t).then(function ( ) {
+                    
+
+                    var canvas = document.getElementsByClassName("canvas");
+                    var context = canvas[canvas.length - 1].getContext('2d');
+                    context.drawImage(video, 0, 0, 100, 100);
+
+
+                    var myImg = context.canvas.toDataURL("image/png");
+                    
+                    console.log(myImg)
+                    // myImg = myImg.replace("data:image/png;base64,", "");
+                    //console.log(myImg);
+                    console.log("나 보내고있어어~~~?");
+
+                    console.log(context);
+                    console.log("이건뭘까");
+
+
+
+                    var formdata = new FormData();
+                    formdata.append("myImg", myImg);
+
+                });
+            }
+            else{
+                console.log("너 지금 못보내")
+            }
+
+           timeout = setTimeout("streamVideo('videoElement')", 1000);
+            
+            cnt1+=1;
+        }
+
+
+
+
+        
+        
+        /*모든 기능 허용 코드*/
+        function showLine(){
+            jointer1.clearAllConnection();          
+            //jointer1.connectElements('#class1', '#learn');
+            //ointer1.connectElements('#class2', '#learn');
+            //jointer1.connectElements('#learn', '#preview');
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+
+    <input class="burger-check" type="checkbox" id="burger-check" /><label class="burger-icon" for="burger-check">
+        <span class="burger-sticks"></span></label>
+    <!-- <span >Image</span> -->
+    <span style=" font-size:1.5em;color: black; margin-left:50px;">Image</span>
+    <div class="menu">
+        <div style="width: 200px;"></div>
+    </div>
+
+
+    <div id="wrap">       
+        <div id="class-area" class="column scroll">
+
+            <div id="class1" class="card shadow">
+                <div class="card-header">
+                    <div class="card-tool">
+                        <div class="dropdown">
+                            <button class="btn btn-transparent dropdown-toggle" type="button" id="class1-more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="class1-more">
+                              <a class="dropdown-item" href="#">stop class</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="class-tool p-3">
+                        <div class="float-left mr-3">
+                            <p class="text-muted">sample <span class="count1"></span></p>  
+                            <!-- 사진 업로드 하면 사진 갯수가 올라갸야된당.... 1,2,3,4... -->
+    
+                            <div>
+                                <button class="btn-img-upload btn btn-transparent" id="up"><i class="fas fa-upload"></i><br><small class="text-muted">upload</small></button>
+                                <button class="btn-cam-upload btn btn-transparent" id="cam"><i class="fas fa-video"></i><br><small class="text-muted">cam</small></button>
+                            </div>
+                        </div>
+                        <div id="cla1" class="w-445 overflow-x nowrap">
+                            <!-- <img src="/images/JK1.jpg" width="80">
+                            <img src="/images/JK2.jpg" width="80"> -->
+    
+                        </div> 
+                    </div>
+                    
+                    <!-- 이미지 -->                                  
+                    <div class="image-box row m-0 d-none">
+                        <div class="col-6 bg-purple">
+                            <p class="p-2">file
+                                <button type="button" class="image-close float-right close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </p>
+                            <div class="file-select px-2 d-flex align-items-center">
+                                <div id="drop" class="bg-white p-2 w-100 rounded" >
+                                    <!-- <div id="thumbnails">
+                                        <progress id="progressBar" value="0" max="100" style="width:100%"></progress></div> -->
+                                    <!-- <input type="button" id="btnSubmit" value="업로드" style=display:none;> -->
+                                    <p class="text-center mt-3"><i class="fas fa-file-upload fa-2x text-purple"></i></p>
+                                    <p class="text-center text-purple px-4"> Upload an image <br> by drag and drop it here.</p>
+                                </div>
+                                
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <!-- <button class="btn btn-transparent"><i class="far fa-image fa-3x"></i></button> -->
+                                <div><i class="far fa-image fa-3x text-purple"></i></div>
+                                <div class="d-flex align-items-center mx-2"><i class="fas fa-arrow-right text-purple"></i></div>
+                                <div class="position-relative"><i class="far fa-image fa-3x text-purple"></i>
+                                    <div class="rectangle w-80 h-80"></div>
+                                </div>
+                            </div>
+                            <p class="text-center text-purple mb-5">The image is cut into squares.</p>
+                        </div>
+                        <div class="col-6 px-1">
+                            <p class="p-2">sample<span class="count1"></span></p>
+                            <div id="cla2" class="overflow-y h-290">
+                                <!-- <img src="/images/JK1.jpg" width="80" class="m-1">
+                                <img src="/images/JK2.jpg" width="80" class="m-1"> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- cam -->
+                    <div class="cam-box row m-0 d-none">
+                        <div class="col-6 bg-purple">
+                            <p class="p-2">cam
+                                <button type="button" class="cam-close float-right close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </p>
+                            <div class="view-cam px-2 d-flex align-items-center">
+                                <div id="container1" class="p-2 w-100 h-200 text-center">
+                                    <video autoplay="true" id="videoElement1" src="" width="100%"></video>
+                                    
+                                </div>
+                                
+                                
+
+                            </div>
+                            <div class="my-2 d-flex justify-content-center">
+                                <!-- <button class="btn btn-transparent"><i class="far fa-image fa-3x"></i></button> -->
+                                <button class="btn btn-block btn-transparent bg-purple-30 p-2 w-100 rounded" id= "webcamBtn">
+                                    <p class="text-center mt-3"><i class="fas fa-video fa-2x text-purple"></i></p>
+                                    <p class="text-purple text-center px-3">press it to record.</p>
+                                </button>
+                            </div>
+                            
+                        </div>
+                        <div class="col-6 px-1">
+                            <p class="p-2">sample</p>
+                            <div class="overflow-y h-335" id ="forCanvas">
+                                <!--<img src="/images/JK1.jpg" width="80" class="m-1">
+                                <img src="/images/JK5.jpg" width="80" class="m-1">-->
+                                <canvas class="canvas" width="80" height="80" padding="10"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div id="class2" class="card shadow mt-4">
+                <div class="card-header">
+                    <span class="card-title" contenteditable="true" id="card-title2">Class2</span>
+                    <div class="card-tool">
+                        <div class="dropdown">
+                            <button class="btn btn-transparent dropdown-toggle" type="button" id="class2-more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="class2-more">
+                              <a class="dropdown-item" href="#" onclick="deleteClass2()">delete class</a>
+                              <a class="dropdown-item" href="#">stop class</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="class-tool p-3">
+                        <div class="float-left mr-3">
+                            <p class="text-muted">sample <span class="count2"></span></p>  
+                            <!-- 사진 업로드 하면 사진 갯수가 올라갸야된당.... 1,2,3,4... -->
+    
+                            <div>
+                                <button class="btn-img-upload btn btn-transparent"><i class="fas fa-upload"></i><br><small class="text-muted">upload</small></button>
+                                <button class="btn-cam-upload btn btn-transparent"><i class="fas fa-video"></i><br><small class="text-muted">cam</small></button>
+                            </div>
+                        </div>
+                        <div id="cla3" class="w-445 overflow-x nowrap">
+                            <!--<img src="/images/JK1.jpg" width="80">
+                            <img src="/images/JK5.jpg" width="80">-->
+                            
+                        
+                        
+                        </div>
+                    </div>
+                    
+                    <!-- 이미지 -->                                  
+                    <div class="image-box row m-0 d-none">
+                        <div class="col-6 bg-purple">
+                            <p class="p-2">file
+                                <button type="button" class="image-close float-right close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </p>
+                            <div class="file-select px-2 d-flex align-items-center">
+                                <div id="drop2" class="bg-white p-2 w-100 rounded" >
+                                    <!-- <input type="button" id="btnSubmit" value="업로드" style=display:none;> -->
+                                    <p class="text-center mt-3"><i class="fas fa-file-upload fa-2x text-purple"></i></p>
+                                    <p class="text-center text-purple px-4"> Upload an image <br> by drag and drop it here.</p>
+                                </div>
+                                
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <!-- <button class="btn btn-transparent"><i class="far fa-image fa-3x"></i></button> -->
+                                <div><i class="far fa-image fa-3x text-purple"></i></div>
+                                <div class="d-flex align-items-center mx-2"><i class="fas fa-arrow-right text-purple"></i></div>
+                                <div class="position-relative"><i class="far fa-image fa-3x text-purple"></i>
+                                    <div class="rectangle w-80 h-80"></div>
+                                </div>
+                            </div>
+                            <p class="text-center text-purple mb-5">The image is cut into squares.</p>
+                        </div>
+                        <div class="col-6 px-1">
+                            <p class="p-2">sample<span class="count2"></span></p>
+                                <!--<img src="/images/JK1.jpg" width="80" class="m-1">
+                                <img src="/images/JK11.jpg" width="80" class="m-1"> -->                           
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- cam -->
+                    <div class="cam-box row m-0 d-none">
+                        <div class="col-6 bg-purple">
+                            <p class="p-2">cam
+                                <button type="button" class="cam-close float-right close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </p>
+                            <div class="view-cam px-2 d-flex align-items-center">
+                                <div class="p-2 w-100 h-200 text-center">
+                                    <video src="" width="100%"></video>
+                                    video
+                                </div>
+                                
+                            </div>
+                            <div class="my-2 d-flex justify-content-center">
+                                <!-- <button class="btn btn-transparent"><i class="far fa-image fa-3x"></i></button> -->
+                                <button class="btn btn-block btn-transparent bg-purple-30 p-2 w-100 rounded">
+                                    <p class="text-center mt-3"><i class="fas fa-video fa-2x text-purple"></i></p>
+                                    <p class="text-purple text-center px-3">press it to record.</p>
+                                </button>
+                            </div>
+                            
+                        </div>
+                        <div class="col-6 px-1">
+                            <p class="p-2">sample</p>
+                            <div class="overflow-y h-335">
+                               <!-- <img src="/images/JK1.jpg" width="80" class="m-1">
+                                <img src="/images/JK5.jpg" width="80" class="m-1">-->
+                                <!-- <canvas class="canvas"  width="80" height="80" padding="10"></canvas> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- add class 몸 -->
+            <div id="add-class" class="card border-0 bg-light mt-5 p-2">
+                <div class="card-body border-dotted">
+                    <button id="btn-class-clone" class="btn btn-block btn-transparent py-2"><i class="far fa-plus-square"></i> add class</button>
+                </div>
+
+                
+            <!-- 사용하려던 js 클래스 생성 (안씀)-->
+            <!-- <div id = "content">
+                    <button id="addItem">add class</button>
+                </div>
+
+                <script>
+                    $('#addItem').on('click',function(){
+                        $('#content').append("<div class='container1'></div>")
+                        });
+                </script> -->
+
+
+
+            </div>
+        </div>
+        <div class="column vcenter-sticky">
+            <div class="column-stretch-container">
+                <div id="learn" class="card shadow">
+                    <div class="card-header">
+                        <p>learn</p>
+                        <button class="btn btn-block btn-purple py-3" onclick="realsubmit(); move();">learn model
+                            <div id="myProgress" style="position: relative; width: 100%; height: 15px; color: #ffffff;
+                            background-color: #a78bfa; border-color: none; border-radius: 10px;">  	
+                                <div id="myBar" style="position: absolute; width: 0%; height: 100%; background-color: #ffffff;
+                                color: #a78bfa; border-color: none; border-radius: 10px;"></div>	
+                            </div>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="advance">
+                            <a href="#none" id="btn-advance" class="btn collapsed d-block text-left" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                advance
+                                <i id="ico-updown" class="fas fa-chevron-down float-right mt-1"></i>
+                            </a>
+                            <div id="collapse1" class="collapse" aria-labelledby="advance" data-parent="#advance">
+                                <div class="form-group row mt-3">
+                                    <label for="" class="col-5 col-form-label">epochs</label>
+                                    <div class="col-7">
+                                        <input type="number" class="form-control form-control-sm" min="1" maxlength="4" max="9999" id="epochs">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-5 col-form-label">batch size</label>
+                                    <div class="col-7">
+                                      <select name="batch_list" id="batch_count" class="form-control form-control-sm">
+                                              <option>choose</option> <option>16</option><option>32</option>
+                                                  <option>64</option><option>128</option><option>256</option>                                 
+                                      </select>
+                                    </div>
+                                </div>  
+                                <div class="form-group row">
+                                    <label for="" class="col-12 col-form-label">learning rate</label>
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <input type="number" id="learning_rate" maxlength="6" class="form-control form-control-sm" min="0.00001" max="0.1" step="0.00001">
+                                            <div class="input-group-append ml-2 mt-1 pointer">
+                                                <i class="far fa-question-circle text-purple popover-msg" data-toggle="popover" title="Learning rate" data-content="Change the numbers carefully. Even small differences can have a big impact on the model's learning.."></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <span class="mt-1 mr-5">initialize default</span>
+                                            <button class="btn btn-transparent input-group-append">
+                                                <i class="far fa-clock text-purple"></i>
+                                            </button>
+                                        </div>                                                  
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="card-footer border-0 bg-transparent">
+                        <button class="btn btn-block btn-transparent"><i class="fas fa-ellipsis-v"></i></button>
+                    </div> -->
+                </div>
+            </div>            
+        </div>
+        <div class="column vcenter-sticky">
+            <div class="column-stretch-container">
+                <div id="preview" class="card shadow">
+                    <div class="card-header">
+                        <p>preview<button class="btn btn-purple float-right px-5 py-2">export model</button></p>
+                        
+                    </div>
+                    <div class="card-body px-0">
+                        <div class="px-3 first">
+                            <p class="text-center py-5"><button id="btn-preview" class="btn btn-transparent">To check the model, <br> learn the model on the left and click here.</button></p>                        </div>
+                        <div class="last d-none">
+                            <div class="px-3"> 
+                                <div class="form-group row mt-3">
+                                    <label for="" class="col-5 col-form-label form-inline">
+                                        <span class="mr-3">input</span>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                            <label class="custom-control-label" for="customSwitch1">use</label>
+                                        </div>
+                                    </label>
+                                    <div class="col-7">
+                                          <option value="image">image</option>
+                                          <option value="cam">cam</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div id="image-select">
+                                    <div class="file-select px-2 d-flex align-items-center">
+                                        <div class="bg-purple-50 p-2 w-100 rounded">
+                                            <p class="text-center mt-3 style="color: black;"><i class="fas fa-file-upload fa-2x text-purple"></i></p>
+                                            <p class="text-center text-purple px-4" style="color: black;"> Upload an image <br> by drag and drop it here.</p>                                        </div>                                            
+                                    </div>   
+                                    <div class="px-5 py-3 text-center">
+                                        <img src="" class="img-fluid" style="max-height:360px">
+
+                                        
+                                    </div>                                     
+                                </div>
+                                <div id="cam-select" class="d-none">
+                                    <div class="file-select px-2 d-flex align-items-center">
+                                        <!-- <button class="btn btn-block btn-transparent bg-purple-30 p-2 w-100 rounded">
+                                            <p class="text-center mt-3"><i class="fas fa-video fa-2x text-purple"></i></p>
+                                            <p class="text-purple text-center px-3">press it to record.</p>
+                                        </button>                                             -->
+                                        <!-- <div class="plz_img"><h1>안녕하세요</h1></div> -->
+                                    </div>   
+                                    <div id="container" class="px-2 py-2 text-center " > 
+                                        <video autoplay="true" id="videoElement" style="width: 400px; height: 300px; padding-top: 10px;"></video>
+                                    </div>                                     
+                                </div>
+                                
+                            </div>
+                            <div class="position-relative">
+                                <hr>
+                                <span class="arrow-bottom"><i class="fas fa-arrow-down"></i></span>
+                            </div>
+                            
+                            <div class="px-3">
+                                <div class="form-group row mt-3">
+                                    <label for="" class="col-5 col-form-label">output</label>
+                                    
+                                </div>
+                                <div class="px-2">
+                                    <div class="form-group row">
+                                        <label for="" class="col-4 col-form-label" id="hyo1">class1</label>
+                                        <div class="col-8">
+                                            <div class="progress" style="height:20px;margin-top:8px">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="pro_1">0%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="" class="col-4 col-form-label" id="hyo2">class2</label>
+                                        <div class="col-8">
+                                            <div class="progress" style="height:20px;margin-top:8px">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="pro_2">0%</div>
+                                            </div>
+                                        </div>
+                                    </div>     
+                                </div>     	
+                                <div class="form-group row">	
+                                    <label for="" class="col-4 col-form-label" id="hyo3">class3</label>	
+                                    <div class="col-8">	
+                                        <div class="progress" style="height:20px;margin-top:8px">	
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="pro_3">0%</div>	
+                                        </div>	
+                                    </div>	
+                                </div>                                            
+                                </div>                                        
+                            </div>
+                        </div>                                    
+                    </div>
+                    
+                </div>
+            
+            </div>
+        </div>
+    </div> 
+    
+    
+    <div id="class-clone" class="d-none">
+        <div id="class3" class="card shadow mt-4">
+            <div class="card-header">
+                
+                <span class="card-title" contenteditable="true" id="card-title3">Class 이름 편집되게 어떻게 할까요오~ 누가하나요~</span>
+                <div class="card-tool">
+                    <div class="dropdown">
+                        <button class="btn btn-transparent dropdown-toggle" type="button" id="class1-more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="class1-more">
+                          <a class="dropdown-item" href="#" onclick="deleteClass3()">delete class</a>
+                          <a class="dropdown-item" href="#">stop class</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="class-tool p-3">
+                    <div class="float-left mr-3">
+                        <p class="text-muted">sample <span class=" count3"> </span></p>  
+                        <!-- 사진 업로드 하면 사진 갯수가 올라갸야된당.... 1,2,3,4... -->
+
+                        <div>
+                            <button class="btn-img-upload btn btn-transparent"><i class="fas fa-upload"></i><br><small class="text-muted">upload</small></button>
+                            <button class="btn-cam-upload btn btn-transparent"><i class="fas fa-video"></i><br><small class="text-muted">cam</small></button>
+                        </div>
+                    </div>
+                    <div id="cla5" class="w-445 overflow-x nowrap">
+                        <!--<img src="/images/JK1.jpg" width="80">
+                        <img src="/images/JK5.jpg" width="80"> -->
+                    </div> 
+                </div>
+                
+                <!-- 이미지 -->                                  
+                <div class="image-box row m-0 d-none">
+                    <div class="col-6 bg-purple">
+                        <p class="p-2">file
+                            <button type="button" class="image-close float-right close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </p>
+                        <div class="file-select px-2 d-flex align-items-center">
+                            <div id="drop3" class="bg-white p-2 w-100 rounded">
+                                <!-- <input type="button" id="btnSubmit" value="업로드" style=display:none;/>    -->
+                                <p class="text-center mt-3"><i class="fas fa-file-upload fa-2x text-purple"></i></p>
+                                <p class="text-center text-purple px-4"> Upload an image <br> by drag and drop it here.</p>
+                            </div>
+                            
+                        </div>
+                        <div class="mt-5 d-flex justify-content-center">
+                            <!-- <button class="btn btn-transparent"><i class="far fa-image fa-3x"></i></button> -->
+                            <div><i class="far fa-image fa-3x text-purple"></i></div>
+                            <div class="d-flex align-items-center mx-2"><i class="fas fa-arrow-right text-purple"></i></div>
+                            <div class="position-relative"><i class="far fa-image fa-3x text-purple"></i>
+                                <div class="rectangle w-80 h-80"></div>
+                            </div>
+                        </div>
+                        <p class="text-center text-purple mb-5">The image is cut into squares.</p>
+                    </div>
+                    <div class="col-6 px-1">
+                        <p class="p-2">sample<span class="count3"></span></p>
+                           <!-- <img src="/images/JK1.jpg" width="80" class="m-1">
+                            <img src="/images/JK5.jpg" width="80" class="m-1">-->
+                        </div>
+                    </div>
+                </div>
+                <!-- cam -->
+                <div class="cam-box row m-0 d-none">
+                    <div class="col-6 bg-purple">
+                        <p class="p-2">cam
+                            <button type="button" class="cam-close float-right close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </p>
+                        <div class="view-cam px-2 d-flex align-items-center">
+                            <div class="p-2 w-100 h-200 text-center">
+                                <video src="" width="100%"></video>
+                                video
+                            </div>
+                            
+                        </div>
+                        <div class="my-2 d-flex justify-content-center">
+                            <!-- <button class="btn btn-transparent"><i class="far fa-image fa-3x"></i></button> -->
+                            <button class="btn btn-block btn-transparent bg-purple-30 p-2 w-100 rounded">
+                                <p class="text-center mt-3"><i class="fas fa-video fa-2x text-purple"></i></p>
+                                <p class="text-purple text-center px-3">press it to record.</p>
+                            </button>
+                        </div>
+                        
+                    </div>
+                    <div class="col-6 px-1">
+                        <p class="p-2">sample</span></p>
+                        <div class="overflow-y h-335">
+                            <!--<img src="/images/JK1.jpg" width="80" class="m-1">
+                            <img src="/images/JK5.jpg" width="80" class="m-1"> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        
+        
+    
+
+        
+
+        // 드래그앤 드랍 
+        //    클래스1
+        var imgValue1 = 0;
+        var uploadFiles1 = [];
+        var files1 =[];
+        var $drop = $("#drop");
+        $drop.on("dragenter", function (e) { //드래그 요소가 들어왔을떄
+            $(this).addClass('drag-over');
+        }).on("dragleave", function (e) { //드래그 요소가 나갔을때
+            $(this).removeClass('drag-over');
+        }).on("dragover", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }).on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('drag-over');
+            files1 = e.originalEvent.dataTransfer.files;
+            /*업로드된 이미지를  카운트해서 sample{} <--에 숫자 넣어주기 코드*/
+            for (var i = 0; i < files1.length; i++) {
+                imgValue1++;
+                $('.count1').html(imgValue1);
+                //for(var j = 0; j < files.length; j++) {
+                //   imgValue++;
+                //$('.count2').html(imgValue);
+
+                var file1 = files1[i];
+                console.log(file1);
+                var size1 = uploadFiles1.push(file1);
+                preview(file1, size1 - 1);
+            }
+        });
+
+        function preview(file1, idx) {
+            var reader = new FileReader();
+            reader.onload = (function (f, idx) {
+                return function (e) {
+                    var $div = $(' \
+    <img style="width:90px; height:90px; padding:5px;" src="' + e.target.result + '" title="' + escape(f.name) + '"/> \
+    ');
+                    var $div1 = $(' \
+    <img style="width:90px; height:90px; padding:5px;" src="' + e.target.result + '" title="' + escape(f.name) + '"/> \
+    ');
+                    $("#cla1").append($div);
+                    $("#cla2").append($div1);
+
+                    //$("#thumbnails").append($div);
+                    f.target = $div;
+                };
+            })(file1, idx);
+            reader.readAsDataURL(file1);
+        }
+
+
+        // 클래스2
+        var imgValue2 = 0;
+        var uploadFiles2 = [];
+        var files2 = [];
+        var $drop2 = $("#drop2");
+        $drop2.on("dragenter", function (e) { //드래그 요소가 들어왔을떄
+            $(this).addClass('drag-over');
+        }).on("dragleave", function (e) { //드래그 요소가 나갔을때
+            $(this).removeClass('drag-over');
+        }).on("dragover", function (e) {
+            e.preventDefault();
+        }).on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('drag-over');
+            files2 = e.originalEvent.dataTransfer.files;
+            /*업로드된 이미지를  카운트해서 sample{} <--에 숫자 넣어주기 코드*/
+            for (var i = 0; i < files2.length; i++) {
+                imgValue2++;
+                $('.count2').html(imgValue2);
+                //for(var j = 0; j < files.length; j++) {
+                //   imgValue++;
+                //$('.count2').html(imgValue);
+
+                var file2 = files2[i];
+                console.log(file2);
+                var size2 = uploadFiles2.push(file2);
+                preview2(file2, size2 - 1);
+            }
+        });
+
+        function preview2(file2, idx) {
+            var reader = new FileReader();
+            reader.onload = (function (f, idx) {
+                return function (e) {
+                    var $div = $(' \
+    <img style="width:90px; height:90px; padding:5px;" src="' + e.target.result + '" title="' + escape(f.name) + '"/> \
+    ');
+                    var $div1 = $(' \
+    <img style="width:90px; height:90px; padding:5px;" src="' + e.target.result + '" title="' + escape(f.name) + '"/> \
+    ');
+                    $("#cla3").append($div);
+                    $("#cla4").append($div1);
+
+                    //$("#thumbnails").append($div);
+                };
+            })(file2, idx);
+            reader.readAsDataURL(file2);
+        }
+
+        // 클래스3이 원래 있던 자리
+        function preview3(file3, idx) {
+            var reader = new FileReader();
+            reader.onload = (function (f, idx) {
+                return function (e) {
+                    var $div = $(' \
+    <img style="width:90px; height:90px; padding:5px;" src="' + e.target.result + '" title="' + escape(f.name) + '"/> \
+    ');
+                    var $div1 = $(' \
+    <img style="width:90px; height:90px; padding:5px;" src="' + e.target.result + '" title="' + escape(f.name) + '"/> \
+    ');
+                    $("#cla5").append($div);
+
+                    //$("#thumbnails").append($div);
+                    f.target = $div;
+                };
+            })(file3, idx);
+            reader.readAsDataURL(file3);
+        }
+
+    function move() {
+        var elem = document.getElementById("myBar");   
+        var width = 1;
+        var id = setInterval(frame, 10);
+        console.log("동작중")
+        function frame() {
+            if (width >= 100) {
+            clearInterval(id);
+            } else {
+            width++; 
+            elem.style.width = width + '%'; 
+            }
+        }
+        }
+
+    function realsubmit(){ 
+        var superformData = new FormData();
+
+        const epochs = document.getElementById('epochs').value; 
+        const batch_size = document.getElementById('batch_count').value; 
+        const learning_rate = document.getElementById('learning_rate').value; 
+
+        superformData.append("epochs",epochs);
+        superformData.append("batch_size",batch_size);
+        superformData.append("learning_rate",learning_rate);
+
+        const cnt1 = document.getElementsByClassName('count1')[0].innerHTML;
+        const cnt3 = document.getElementsByClassName('count3')[0].innerHTML;
+
+        console.log(cam_state);
+        superformData.append("up",cam_state);
+        
+
+        let cam_num = " "
+        if(cnt3 == " "){
+            for(var i = 1; i < 3; i++) {
+                if (up==1 && i==1){
+                    const name = document.getElementById('card-title'+i).innerHTML; 
+                    document.getElementById('hyo'+i).innerHTML=name; 
+                    superformData.append("class_name",name);
+
+                    console.log(cam_cnt);
+                    console.log("2개")
+                    cam_num = "" + cam_cnt;
+                    superformData.append("file_count",cam_num);
+  
+                    i++;
+                    }
+
+                const name = document.getElementById('card-title'+i).innerHTML; 
+                document.getElementById('hyo'+i).innerHTML=name; 
+                superformData.append("class_name",name);
+                for(var j = 0; j < Number(eval("cnt"+i)); j++) {
+
+                    superformData.append("class"+i,eval("files"+i)[j]);
+                }
+                superformData.append("file_count",eval("cnt"+i));
+            }
+        }
+ 
+
+    }
+
+    </script>
+
+
+
+</body>
+</html>

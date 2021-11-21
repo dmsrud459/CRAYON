@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doument</title>
+    <style>
+        .menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  max-width: 0;
+  transition: 0.5s ease;
+  z-index: 1;
+  background-color: #eee;
+} 
+
+.burger-icon {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  padding: 8px 0;
+  top: 4px;
+  right: 4px;
+  user-select: none;
+  width: auto;
+  margin-left: 2%;
+  margin-top: 1%;
+}
+
+.burger-icon .burger-sticks {
+  background: #333;
+  display: block;
+  height: 3px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 20px;
+}
+
+.burger-icon .burger-sticks:before,
+.burger-icon .burger-sticks:after {
+  background: #333;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.burger-icon .burger-sticks:before {
+  top: 6px;
+}
+
+.burger-icon .burger-sticks:after {
+  top: -6px;
+}
+
+.burger-check {
+  display: none;
+  
+}
+
+.burger-check:checked~.menu {
+  max-width: 200px;
+}
+
+.burger-check:checked~.burger-icon .burger-sticks {
+  background: transparent;
+}
+
+.burger-check:checked~.burger-icon .burger-sticks:before {
+  transform: rotate(-45deg);
+}
+
+.burger-check:checked~.burger-icon .burger-sticks:after {
+  transform: rotate(45deg);
+}
+
+.burger-check:checked~.burger-icon:not(.steps) .burger-sticks:before,
+.burger-check:checked~.burger-icon:not(.steps) .burger-sticks:after {
+  top: 0;
+}
+
+
+
+        *{
+            padding: 0;
+            margin: 0;
+            /* border: 1px solid black; */
+        }
+        .container{
+            width: 700px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+        header>p{
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        header>ul{
+            display: flex;
+        }
+        header>ul>li{
+            list-style-type: none;
+            margin-left: 1.5rem;
+        }
+        header>ul>li>a{
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: black;
+            padding-bottom: 5px;
+        }
+        header>ul>li:first-child>a{
+            border-bottom: 5px solid gray;
+        }
+        header>ul>li>a:hover{
+            border-bottom: 5px solid gray;
+        }
+        section{
+            padding: 0 3rem;
+            text-align: center;
+        }
+        section>p{
+            margin-bottom: 1rem;
+        }
+        section>p:first-child{
+            font-size: 2rem;
+            font-weight: 900;
+        }
+        section>p:last-of-type{
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        section>a{
+            display: block;
+            border: 1px solid #512772;
+            width: 150px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: auto;
+            padding: 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            background-color: #512772;
+            color: white;
+        }
+
+
+    </style>
+</head>
+<body>
+    <input class="burger-check" type="checkbox" id="burger-check" /><label class="burger-icon" for="burger-check"><span class="burger-sticks"></span></label>
+<div class="menu">
+  <div style="width: 200px;"></div>
+</div>
+    <div class="container">
+        <header>
+            <p>Notice</p>
+           
+        </header>
+        <section>
+            <p>Create Your Own Model</p>
+            <p>Train a computer to recognize your own images, sound, &poses.</p>
+            <p>Create machine learning models that can be used
+                <br>on sites and apps easily and quickly. You don't need
+                <br>expertise or coding skills.
+            </p>
+            <a href="#" onclick="location.href='3_main.html'">start</a>
+        </section>
+        <footer></footer>
+    </div>
+</body>
+</html>

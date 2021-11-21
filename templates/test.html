@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+    <title>Document</title>
+    <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+</head>
+<body>
+   
+    <p id="example">AJAX</p>
+    <input type="text" id="id1" placeholder="id">
+    <input type="text" id="password1" placeholder="password">
+    <input type="text" id="email1" placeholder="email">
+    <input type="button" id="execute" value="execute">
+    <script>
+        $('#execute').click(function(){
+            var id = $('#id1').val();
+            var password = $('#password1').val();
+            var email = $('#email1').val();
+
+            var postdata = {
+                'id':id, 'password':password, 'email':email
+            }
+            
+            $.ajax({
+                type: 'POST',
+                url: '{{url_for("ajax")}}',
+                data: JSON.stringify(postdata),
+                dataType : 'JSON',
+                contentType: "application/json",
+                success: function(data){
+                    $("#listDiv").append(data.result2['id']);
+                    
+                    // alert('성공! 데이터 값:' + data.result2['id']+" " + data.result2['password']+ " " + data.result2['email'])
+                },
+                error: function(request, status, error){
+                    alert('ajax 통신 실패')
+                    alert(error);
+                }
+            })
+        })
+    </script>
+    <div id="listDiv"></div>
+</body>
+
+
+</html>

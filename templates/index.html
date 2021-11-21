@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Hyperspace by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css') }}">
+		<!-- Scripts
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script> -->
+
+	<noscript>
+		<!-- <link rel="stylesheet" href="assets/css/noscript.css" /> -->
+		<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css') }}"> -->
+
+	</noscript>
+	<style>
+		#start {
+		-moz-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		-moz-transition: border-color 0.2s ease;
+		-ms-transition: border-color 0.2s ease;
+		transition: border-color 0.2s ease;
+		background-color: #512772;
+		border: solid 1px !important;
+		border-color: rgba(255, 255, 255, 0.15) !important;
+		border-radius: 3em;
+		color: white;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 0.8em;
+		font-weight: bold;
+		height: calc(4.75em + 2px);
+		letter-spacing: 0.25em;
+		line-height: 4.75em;
+		outline: 0;
+		padding: 0 3.75em;
+		position: relative;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		white-space: nowrap;
+		}
+
+		#se1 {
+			text-align: center;
+			font-weight: 600;
+			
+		}
+
+		#intro{
+			position: relative;
+		}
+
+		#inner1{
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+
+		/* video */
+		#crayon{
+            font-weight: normal;
+            font-size: 48px;
+            margin: 70px 0;
+            text-align: center;
+        }
+        
+        video{
+        width: 800px;
+        height: 500px;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        
+        }
+        video[poster]{
+        width: 800px;
+        height: 500px;    
+        }
+
+		.cursor_test{
+		cursor: pointer;
+		}
+
+	</style>
+</head>
+
+<body class="is-preload">
+
+	<!-- Sidebar -->
+	<section id="sidebar">
+		<div class="inner">
+			<nav>
+				<ul style="font-size: 1.3rem;">
+					<li><a href="#intro">Welcome</a></li>
+					<li><a href="#one1">TRAIN</a></li>
+					<li><a href="#two">TRY</a></li>
+					<li><a href="#three">Our Team</a></li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+
+	
+	
+
+		<!-- Intro -->
+		<section id="intro" class="wrapper style1 fullscreen fade-up">
+			<div class="inner" id="inner1">
+				<section id="se1" style="color: black;">
+					<p style="font-size: 3rem;">Create Your Own Model</p>
+					<p style="font-size: 1.8rem;">Train a computer to recognize your own images, sound, &poses.</p>
+					<p style="font-size: 1.4rem;">Create machine learning models that can be used
+						<br>on sites and apps easily and quickly. You don't need
+						<br>expertise or coding skills.
+					</p>
+					<div>
+						<a href="#one" class="button scrolly" id="start">START</a>
+					</div>
+				</section>
+			</div>
+		</section>
+
+		<!-- One --><div id="one1" style="height: 76.99px;"></div>
+		<section id="one" class="wrapper style2 spotlights">
+			<section>
+				<a href="#" class="image"><img src="static/videos/camera2.gif" alt="" data-position="center center"/></a>
+				<div class="content">
+					<div class="inner">
+						<h2>IMAGE</h2>
+						<p style="color: black; font-size: 1.4rem;">learn based on the images from the file or webcam</p>
+						<ul class="actions">
+							<li><a href="http://127.0.0.1:8050/IMAGE" class="button">START IMAGE</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section>
+				<a href="#" class="image"><img src="static/videos/sound.gif" alt="" data-position="top center"/></a>
+				<div class="content">
+					<div class="inner">
+						<h2>SOUND</h2>
+						<p style="color: black; font-size: 1.4rem;">learn based on 1 second of<br>sound taken from a file or microphone</p>
+						<ul class="actions">
+							<li><a href="http://127.0.0.1:8050/SOUND" class="button">START SOUND</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</section>
+
+		<!-- Two -->
+		<section id="two" class="wrapper style1 fullscreen fade-up">
+				<div class="content-block">
+					<div class="wrapper center">
+						<h2 id="crayon" style="font-size: 3rem;">What is 
+							<span style="color: red;">C</span>
+							<span style="color: orange;">R</span>
+							<span style="color: yellow;">A</span>
+							<span style="color: greenyellow;">Y</span>
+							<span style="color: blue;">O</span>
+							<span style="color: purple;">N</span>
+							</h2>
+						<div style="text-align: center;">
+							<video controls loop muted poster="static/images/321.jpg" preload="bbb">
+								<source src="static/videos/test.mp4" type="video/mp4">
+							</video>
+						</div>
+					</div>
+				</div>
+				<div>
+					<p style="color: black; text-align: center; margin-top: 40px; font-size: 1.4rem;">Teachable Machine is a web-based tool that makes creating machine
+						<br>learning models fast, easy, and accessible to everyone</p>
+				</div>
+		</section>
+
+		<!-- Three -->
+		<section id="three" class="wrapper style1 fade-up" style="margin-bottom: 150px;">
+		<h2 style="text-align: center; margin-bottom: 150px; font-size: 3rem;">Works with...</h2>
+		<div style="text-align: center; margin-bottom: 80px;">
+			<img src="static/images/flask.png" style="width: 80px; height: 50px; margin-right: 30px;"
+            input class="cursor_test" type="button" value='IMAGE' onclick="location.href='https:flask.palletsprojects.com'">
+
+			<img src="static/images/javascript.png" style="width: 80px; height: 50px; margin-right: 30px;"
+            input class="cursor_test" type="button" value='IMAGE' onclick="location.href='https:javascript.com'">
+
+			<img src="static/images/jquery.png" style="width: 80px; height: 50px; margin-right: 30px;"
+            input class="cursor_test" type="button" value='IMAGE' onclick="location.href='https:jquery.com'">
+
+			<img src="static/images/nodejs.png" style="width: 80px; height: 50px; margin-right: 30px;"
+            input class="cursor_test" type="button" value='IMAGE' onclick="location.href='https:nodejs.org/ko/blog'">
+
+			<img src="static/images/python.png" style="width: 80px; height: 50px; margin-right: 30px;"
+            input class="cursor_test" type="button" value='IMAGE' onclick="location.href='https:www.python.org'">
+
+			<img src="static/images/vsc.png" style="width: 50px; height: 50px; margin-right: 30px;"
+            input class="cursor_test" type="button" value='IMAGE' onclick="location.href='https:code.visualstudio.com'">
+
+			<img src="static/images/bootstrap.png" style="width: 50px; height: 50px;"
+            input class="cursor_test" type="button" value='IMAGE' onclick="location.href='http:bootstrapk.com'">
+		</div>
+		<div style="color: black; font-size: 1.4rem; text-align: center;">
+			<p>The models you make with Teachable Machine are real
+				<br>TensorFlow.js models that work anywhere javascript
+				<br>runs, so they play nice with tools like Flask, JS, jQuery, Node.js, Python, Visualstudio, bootstrap & more.<br>
+				<br>Plus, export to different formats to use your models elsewhere, like Coral, Arduino & more.</p>
+		</div>	
+		</section>
+
+	<!-- Footer -->
+	<footer id="footer" class="wrapper style1-alt">
+		<div class="inner" id="foot">
+			<ul class="menu1">
+				<li>&copy; Untitled. All rights reserved.</li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+	</footer>
+
+
+	<script src="{{ url_for('static', filename='js/jquery/jquery.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/jquery/jquery.scrollex.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/jquery/jquery.scrolly.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/jquery/browser.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/jquery/breakpoints.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/jquery/util.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/jquery/main.js')}}"></script>
+
+
+</body>
+
+</html>
